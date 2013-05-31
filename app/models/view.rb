@@ -17,6 +17,3 @@ module View
     puts "Completed task: #{self.description}"
   end
 end
-
-
-
