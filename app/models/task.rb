@@ -1,4 +1,4 @@
-require_relative 'view'
+require_relative '../views/view'
 
 class Task < ActiveRecord::Base
   
@@ -26,5 +26,3 @@ class Task < ActiveRecord::Base
     task.print_complete
   end
 end
-
-
