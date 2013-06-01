@@ -9,6 +9,8 @@ if ARGV.any?
     else
       Task.send(ARGV[0].to_sym)
     end
+  elsif List.methods.include?(ARGV[1].to_sym)
+    # do something
   else
     puts "Error: Unknown argument."
   end

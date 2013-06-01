@@ -4,8 +4,12 @@ class Task < ActiveRecord::Base
   
   include View
 
+  has_many :tasks_tags, dependent: :destroy
+  has_many :tags, :through => :tasks_tags
+  belongs_to :list
+
   def self.add(args)
-    task = Task.create(description: args)
+    task = Task.create(description: args[:description], list_id: args[:list_id])
     task.print_add
   end
 
@@ -15,7 +19,7 @@ class Task < ActiveRecord::Base
     Task.destroy(task_num)
   end
 
-  def self.list
+  def self.list 
     Task.all.each { |task| task.print_task }
   end
 
