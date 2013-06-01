@@ -13,6 +13,7 @@ class Task < ActiveRecord::Base
   def self.add(args)
     task = Task.create(list_id: args[0], description: args[1])
     task.print_add
+    add_tags_to_task(args[2..-1]) if args[2]
   end
 
   def self.delete(task_id)
@@ -34,5 +35,27 @@ class Task < ActiveRecord::Base
 
   def self.display_per_listid(list_id)
     Task.find(list_id).each { |task| task.print_task }
+  end
+
+  def self.display_per_tag(tag_id)
+    tasks = get_tasks(tag_id)
+    tasks.each { |task| task.print_task }
+  end
+
+  private
+
+  def self.add_tags_to_task(tag_names, task_id)
+    tag_ids = get_tag_ids(tag_names)
+    tag_ids.each { |tag_id| TasksTag.add(task_id, tag_id) }
+  end
+
+  def self.get_tag_ids(tag_names)
+    tag_names.inject([]) do |tag_ids, tag_name|
+      tag_ids << Tag.get_tag(tag_name).id
+    end
+  end
+
+  def self.get_tasks(tag_id)
+    TasksTag.get_tasks(tag_id)
   end
 end
