@@ -1,18 +1,23 @@
 require_relative 'config/application'
 
+CLASSES = ["List","Task","Tag"]
+
 if ARGV.any?
   args = ARGV[1..-1].join(' ')
   
-  if Task.methods.include?(ARGV[0].to_sym)
-    if ARGV.length > 1
-      Task.send(ARGV[0].to_sym, args)
+  if CLASSES.include?(ARGV[0])
+    klass = ARGV[0].constantize
+    if klass.methods.include?(ARGV[0].to_sym)
+      if ARGV.length > 1
+        klass.send(ARGV[0].to_sym, args)
+      else
+        klass.send(ARGV[0].to_sym)
+      end
     else
-      Task.send(ARGV[0].to_sym)
+      puts "Error: Unknown argument."
     end
-  elsif List.methods.include?(ARGV[1].to_sym)
-    # do something
   else
-    puts "Error: Unknown argument."
+    puts "Error: class #{ARGV[0]} does not exist."
   end
 else
   puts "Error: No arguments."
