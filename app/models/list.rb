@@ -1,32 +1,24 @@
+require_relative '../views/list_view'
+
 class List < ActiveRecord::Base
+
+  include ListView
 
   has_many :tasks, dependent: :destroy
 
-  def self.add(args)
+  def self.add(list_name)
 
-    list = List.create(name: args)
-    # list.print_add_list
+    list = List.create(name: list_name)
+    list.print_add
   end
 
-  def self.delete(list_num)
-    list = List.find(list_num)
-    # list.print_destroy_list
-    List.destroy(list_num)
+  def self.delete(list_id)
+    list = List.find(list_id)
+    list.print_destroy
+    List.destroy(list_id)
   end
 
-  def self.list
+  def self.display_all
     List.all.each { |list| list.print_list }
-  end
-
-  def self.add_task(list_id, description)
-    Task.add({description: description, list_id: list_id})
-  end
-
-  def self.remove_task(task_id)
-    Task.delete(task_id)
-  end
-
-  def self.complete_task(task_id)
-    Task.complete!(task_id)
   end
 end
