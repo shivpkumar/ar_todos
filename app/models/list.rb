@@ -13,7 +13,7 @@ class List < ActiveRecord::Base
   end
 
   def self.delete(list_id)
-    list = List.find(list_id)
+    list = List.find(list_id)[0]
     list.print_destroy
     List.destroy(list_id)
   end

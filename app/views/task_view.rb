@@ -12,8 +12,8 @@ module TaskView
   end
 
   def print_destroy
-    list_name = List.find(list_id)
-    puts "Deleted \"#{self.description}\" from your \"#{listname}\" TODO list..."
+    list_name = List.find(list_id).name
+    puts "Deleted \"#{self.description}\" from your \"#{list_name}\" TODO list..."
   end
   
   def print_task

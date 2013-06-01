@@ -1,4 +1,8 @@
+require_relative '../views/tag_view'
+
 class Tag < ActiveRecord::Base
+
+  include TagView
 
   has_many :tasks_tags, dependent: :destroy
   has_many :tasks, :through => :tasks_tags
@@ -9,9 +13,9 @@ class Tag < ActiveRecord::Base
   end
 
   def self.delete(tag_id)
-    tag = Tag.find(task_id)
+    tag = Tag.find(tag_id)[0]
     tag.print_destroy
-    Tag.destroy(task_id)
+    Tag.destroy(tag_id)
   end
 
   private
