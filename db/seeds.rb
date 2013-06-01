@@ -2,7 +2,7 @@ require 'faker'
 require_relative '../config/application'
 
 10.times do
-  List.create(name: Faker::Lorem.sentence(word_count = 2))
+  List.create(name: "#{Faker::Lorem.word} #{Faker::Lorem.word}")
 end
 
 50.times do

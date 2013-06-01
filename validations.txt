@@ -1,11 +1,11 @@
 List:
-* name  uniqueness => true
+* name  uniqueness => true #done
 
 Task:
-* list_id cannot be null
-* description can't be blank
+* list_id cannot be null  #done
+* description can't be blank #done
 
 Tag:
-* name uniqueness => true
+* name uniqueness => true #done
 
 [taskid, tagid]  => unique 

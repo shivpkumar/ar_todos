@@ -4,11 +4,11 @@ class List < ActiveRecord::Base
 
   include ListView
 
+  validates :name, :uniqueness => true
   has_many :tasks, dependent: :destroy
 
   def self.add(list_name)
-
-    list = List.create(name: list_name)
+    list = List.create(name: list_name.join(' '))
     list.print_add
   end
 

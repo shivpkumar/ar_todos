@@ -1,7 +1,11 @@
 module ListView
   
   def print_add
-    puts "Created list: #{self.name}"
+    if self.id
+      puts "Created list: #{self.name}"
+    else
+      puts "Error: list \"#{self.name}\" already exists"
+    end
   end
 
   def print_destroy

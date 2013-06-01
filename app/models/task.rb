@@ -7,9 +7,11 @@ class Task < ActiveRecord::Base
   has_many :tasks_tags, dependent: :destroy
   has_many :tags, through: :tasks_tags
   belongs_to :list
+  validates_presence_of :list_id, :description
+  validates :list_id, :numericality => { :only_integer => true }
 
   def self.add(args)
-    task = Task.create(description: args[1], list_id: args[0])
+    task = Task.create(list_id: args[0], description: args[1])
     task.print_add
   end
 
@@ -33,6 +35,4 @@ class Task < ActiveRecord::Base
   def self.display_per_listid(list_id)
     Task.find(list_id).each { |task| task.print_task }
   end
-
-
 end

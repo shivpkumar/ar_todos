@@ -1,11 +1,19 @@
 module TaskView
   
   def print_add
-    puts "Appended \"#{self.description}\" to your TODO list..."
+    if self.list_id == 0
+      puts "Error: list_id must be numeric"
+    elsif self.description
+      list_name = List.find(list_id).name
+      puts "Appended \"#{self.description}\" to your \"#{list_name}\" TODO list..." 
+    else
+      puts "Error: no description included"
+    end
   end
 
   def print_destroy
-    puts "Deleted \"#{self.description}\" from your TODO list..."
+    list_name = List.find(list_id)
+    puts "Deleted \"#{self.description}\" from your \"#{listname}\" TODO list..."
   end
   
   def print_task
