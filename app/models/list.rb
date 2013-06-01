@@ -12,7 +12,6 @@ class List < ActiveRecord::Base
     list = List.find(list_num)
     # list.print_destroy_list
     List.destroy(list_num)
-    #activerecord should delete all tasks in this list
   end
 
   def self.list
@@ -27,4 +26,7 @@ class List < ActiveRecord::Base
     Task.delete(task_id)
   end
 
+  def self.complete_task(task_id)
+    Task.complete!(task_id)
+  end
 end

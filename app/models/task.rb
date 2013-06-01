@@ -4,7 +4,7 @@ class Task < ActiveRecord::Base
   
   include View
 
-  has_many :tasks_tags, dependent: :destroy
+  has_many, dependent: :destroy
   has_many :tags, :through => :tasks_tags
   belongs_to :list
 
