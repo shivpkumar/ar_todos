@@ -1,0 +1,11 @@
+List:
+* name  uniqueness => true
+
+Task:
+* list_id cannot be null
+* description can't be blank
+
+Tag:
+* name uniqueness => true
+
+[taskid, tagid]  => unique 

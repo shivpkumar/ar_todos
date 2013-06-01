@@ -1,16 +1,16 @@
 New driver code :
 
-list add <listname> #done
+list add <listname> #done tested
 task add <listid> <desc> <tagnames> # modify
 
 
-list delete <listid> #done
-task delete <taskid> #done
-tag delete <tagid> #done
+list delete <listid> #done tested
+task delete <taskid> #done tested
+tag delete <tagid> #create 
 
-list display_all #done
-task display_all #done
-task display_per_listid <listid> # create
+list display_all #done tested
+task display_all #done tested
+task display_per_listid <listid> # done
 task display_per_tag <tagid> #create
 tag display_all #create
 

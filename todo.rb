@@ -3,15 +3,15 @@ require_relative 'config/application'
 CLASSES = ["List","Task","Tag"]
 
 if ARGV.any?
-  args = ARGV[1..-1].join(' ')
+  args = ARGV[2..-1]
   
-  if CLASSES.include?(ARGV[0])
-    klass = ARGV[0].constantize
-    if klass.methods.include?(ARGV[0].to_sym)
-      if ARGV.length > 1
-        klass.send(ARGV[0].to_sym, args)
+  if CLASSES.include?(ARGV[0].capitalize)
+    klass = ARGV[0].capitalize.constantize
+    if klass.methods.include?(ARGV[1].to_sym)
+      if ARGV.length > 2
+        klass.send(ARGV[1].to_sym, args)
       else
-        klass.send(ARGV[0].to_sym)
+        klass.send(ARGV[1].to_sym)
       end
     else
       puts "Error: Unknown argument."
