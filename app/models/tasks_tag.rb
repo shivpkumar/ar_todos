@@ -14,4 +14,16 @@ class TasksTag < ActiveRecord::Base
     tasks_tags = TasksTag.where("tag_id = #{tag_id}")
     tasks_tags.inject([]) { |task_ids, tasks_tag| task_ids << tasks_tag.task_id }
   end
+
+  def self.get_tag_ids(task_id)
+    array_taskstag_objects = TasksTag.where("task_id = #{task_id}")
+    array_taskstag_objects.inject([]) { |tag_ids,taskstag_ob| tag_ids << taskstag_ob.tag_id }
+  end
+
+  # def self.get_tagnames(task_id)
+    # taskstag_objects = TasksTag.where("task_id = #{task_id}")
+    # taskstag_objects.inject([]) { |tagnames,taskstag_object| tagnames << Tag.find(taskstag_object.tag_id).name }
+  # end
+
 end
+            

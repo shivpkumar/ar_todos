@@ -1,3 +1,5 @@
+require_relative '../models/tasks_tag'
+
 module TaskView
   
   def print_add
@@ -18,7 +20,9 @@ module TaskView
   
   def print_task
     mark = self.complete? ? "X" : " "
-    puts "[#{mark}] #{self.id}. #{self.description}"
+    tag_ids = TasksTag.get_tag_ids(self.id)
+    tag_names = Tag.get_tag_names(tag_ids)
+    puts "[#{mark}] #{self.id}. #{self.description} #{tag_names.inspect}"
   end
 
   def print_complete

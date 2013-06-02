@@ -20,6 +20,10 @@ class Tag < ActiveRecord::Base
 
   private
 
+  def self.get_tag_names(tag_ids)
+    tag_ids.inject([]) {|tag_names,tag_id| tag_names << Tag.find(tag_id).name}
+  end
+
   def self.get_tag(tag_name)
      Tag.create(name: tag_name) unless Tag.find_by_name(tag_name)
   end
